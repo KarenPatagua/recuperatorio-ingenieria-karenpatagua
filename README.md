@@ -1,61 +1,95 @@
-# Calculadora de Gastos
 
-Aplicación web básica para registrar, visualizar y eliminar gastos, desarrollada con **Node.js**, **Express** y **HTML/CSS**.
+#  Calculadora de Gastos
+
+Una aplicación web simple para **registrar, visualizar y eliminar gastos** personales, desarrollada con Node.js, Express y HTML/CSS. Guarda los datos en un archivo JSON localmente.
 
 ---
+
+##  Vista previa
+
+
 
 ## Características
 
-- Registrar nuevos gastos con concepto, monto y categoría.
-- Visualizar la lista de gastos registrados.
-- Ver el total acumulado.
-- Eliminar gastos específicos.
-- Persistencia de datos en archivo `gastos.json`.
+- Registrar nuevos gastos (concepto, monto y categoría)
+- Ver listado de gastos con su categoría y monto
+- Calcular el total acumulado automáticamente
+- Eliminar gastos individualmente
+- Datos persistentes en archivo `gastos.json`
 
 ---
 
-## Tecnologías utilizadas
+##  Tecnologías utilizadas
 
 - Node.js
 - Express.js
-- HTML y CSS
-- LocalStorage (opcional en versión cliente)
-- File System (`fs`) de Node.js
+- HTML5 + CSS3
+- File System (`fs`)
+- (Opcional: `localStorage` para navegador)
 
 ---
 
-##  Estructura del proyecto
+## Estructura del proyecto
 
-recuperatorio-ingenieria-karenpatagua
+```
+calculadora-gastos/
 ├── data/
-│ └── gastos.json
-├── node_modules/
+│   └── gastos.json           
+├── node_modules/             
 ├── src/
-│ └── app.js
+│   └── app.js               
 ├── views/
-│ ├── form.html
-│ └── (opcional: ver-gastos.html)
+│   ├── form.html              
+│   └── ver-gastos.html        
 ├── .gitignore
 ├── Dockerfile
 ├── package.json
 └── README.md
+```
 
+---
 
+## Cómo usar
 
-# Luego sale una URL http://localhost:3000
-- concepto : cena de amigos
-- Monto : 45
-- categoria : Comida
+1. Clona este repositorio o descarga los archivos.
 
-# Click guardar datos
-# ver gastos y le saldra los gastos 
+2. Instala dependencias:
 
-# Docker (opcional)
--Puedes correrlo también con Docker:
+```bash
+npm install
+```
 
-bash
-Copiar
-Editar
-# docker build -t calculadora-gastos .
-# docker run -p 3000:3000 calculadora-gastos
+3. Ejecuta el servidor:
 
+```bash
+npm start
+```
+
+4. Abre tu navegador en:  
+[http://localhost:3000]
+
+---
+
+## 🐳 Docker (opcional)
+
+Si deseas ejecutarlo en Docker:
+
+1. Construye la imagen:
+
+```bash
+docker build -t calculadora-gastos .
+```
+
+2. Ejecuta el contenedor:
+
+```bash
+docker run -p 3000:3000 calculadora-gastos
+```
+
+##  Notas
+
+- Asegúrate que el puerto `3000` no esté ocupado.
+- El archivo `gastos.json` se crea automáticamente si no existe.
+- Puedes mejorar esta app agregando autenticación, exportación de datos, base de datos externa, etc.
+
+## Karen Patagua
