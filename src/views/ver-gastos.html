@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Gastos</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff;
+      padding: 30px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 12px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+
+    td:last-child {
+      text-align: center;
+    }
+
+    .total {
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: right;
+    }
+
+    button {
+      margin-top: 20px;
+      background-color: red;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #007bff;
+    }
+  </style>
+</head>
+<body>
+  <h1>Lista de Gastos</h1>
+  <table id="tablaGastos">
+    <thead>
+      <tr>
+        <th>Concepto</th>
+        <th>Monto</th>
+        <th>Categoría</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <div class="total" id="totalGastos">Total: $0</div>
+
+  <button onclick="limpiarGastos()">Limpiar todo</button>
+  <br>
+  <a href="index.html">← Registrar nuevo gasto</a>
+
+  <script>
+    const gastos = JSON.parse(localStorage.getItem('gastos')) || [];
+    const tbody = document.querySelector('#tablaGastos tbody');
+    let total = 0;
+
+    gastos.forEach(g => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${g.concepto}</td>
+        <td>$${g.monto.toFixed(2)}</td>
+        <td>${g.categoria}</td>
+        <td>${g.fecha}</td>
+      `;
+      tbody.appendChild(row);
+      total += g.monto;
+    });
+
+    document.getElementById('totalGastos').textContent = `Total: $${total.toFixed(2)}`;
+
+    function limpiarGastos() {
+      if (confirm('¿Estás seguro de eliminar todos los gastos?')) {
+        localStorage.removeItem('gastos');
+        location.reload();
+      }
+    }
+  </script>
+</body>
+</html>

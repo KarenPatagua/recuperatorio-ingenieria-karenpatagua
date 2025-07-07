@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Agregar Gasto</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 50px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    form {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 15px;
+      color: #555;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-top: 5px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    a {
+      margin-top: 20px;
+      display: inline-block;
+      text-decoration: none;
+      color: #007bff;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>Registrar Gasto</h1>
+  <form id="formGasto">
+    <label>
+      Concepto:
+      <input type="text" id="concepto" required>
+    </label>
+
+    <label>
+      Monto:
+      <input type="number" id="monto" required min="0.01" step="0.01">
+    </label>
+
+    <label>
+      Categoría:
+      <select id="categoria" required>
+        <option value="Comida">Comida</option>
+        <option value="Transporte">Transporte</option>
+        <option value="Servicios">Servicios</option>
+        <option value="Otros">Otros</option>
+      </select>
+    </label>
+
+    <button type="submit">Guardar Gasto</button>
+  </form>
+
+  <a href="ver-gastos.html">← Ver gastos</a>
+
+  <script>
+    document.getElementById('formGasto').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const concepto = document.getElementById('concepto').value;
+      const monto = parseFloat(document.getElementById('monto').value);
+      const categoria = document.getElementById('categoria').value;
+
+      const gasto = { concepto, monto, categoria, fecha: new Date().toLocaleString() };
+
+      let gastos = JSON.parse(localStorage.getItem('gastos')) || [];
+      gastos.push(gasto);
+      localStorage.setItem('gastos', JSON.stringify(gastos));
+
+      alert('¡Gasto guardado!');
+      this.reset();
+    });
+  </script>
+</body>
+</html>
