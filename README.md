@@ -5,10 +5,6 @@ Una aplicación web simple para **registrar, visualizar y eliminar gastos** pers
 
 ---
 
-##  Vista previa
-
-
-
 ## Características
 
 - Registrar nuevos gastos (concepto, monto y categoría)
